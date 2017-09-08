@@ -1,0 +1,27 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+	<div class="container">
+		<ul class="nav navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link">Logged in as NAME</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/library">Library</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<div ngbDropdown class="d-inline-block dropdown-links">
+					<button class="btn btn-outline" ngbDropdownToggle>
+						<i class="fa fa-cog" aria-hidden="true"></i>
+					</button>
+
+					<div class="dropdown-menu" aria-labelledby="settingsDropdown">
+						<a class="dropdown-item">Settings</a>
+						<a class="dropdown-item" routerLink="/about">About</a>
+						<a class="dropdown-item">Logout</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Year</th>
+					<th>Plot</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let movie of (movies | orderBy: 'title')">
+					<th scope="row">{{ movie.id }}</th>
+					<td>
+						<a 
+							[routerLink]="['/library', { outlets: { dvd: ['movies', movie.id] } }]" 
+							(click)="onSelect(movie)"
+						>
+								{{ movie.title | uppercase }}
+						</a>
+					</td>
+					<td>{{ movie.year }}</td>
+					<td>{{ movie.plot }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+

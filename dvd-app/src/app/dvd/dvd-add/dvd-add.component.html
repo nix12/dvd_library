@@ -1,0 +1,24 @@
+<div class="container">
+	<h1>Movie Add Form</h1>
+	<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="id">ID</label>
+			<input 
+				type="text" 
+				name="id"
+				class="form-control"
+				formControlName="id" 
+			>
+
+			<label for="title">Title:</label>
+			<input 
+				type="text" 
+				name="title" 
+				class="form-control" 
+				formControlName="title"
+			>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+</div>

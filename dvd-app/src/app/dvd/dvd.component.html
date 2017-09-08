@@ -1,0 +1,17 @@
+<div class="container">
+	<ul class="nav nav-tabs">
+		<li class="nav-item" routerLinkActive>
+			<a class="nav-link" [routerLink]="[{ outlets: { dvd: 'movies' } }]">Movies</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link" [routerLink]="[{ outlets: { dvd: 'add' } }]">Add</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link">Search</a>
+		</li>
+	</ul>
+
+	<router-outlet name="dvd"></router-outlet>
+</div>
