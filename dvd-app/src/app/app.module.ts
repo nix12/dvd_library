@@ -13,9 +13,19 @@ import { DvdComponent } from './dvd/dvd.component';
 import { DvdDetailComponent } from './dvd/dvd-detail/dvd-detail.component';
 
 import { DvdService } from './dvd/dvd.service';
-import { DvdAddComponent } from './dvd/dvd-add/dvd-add.component';
+import { UserService } from './user/user.service'
+import { AuthService } from './auth/auth.service';
+import { Angular2TokenService } from 'angular2-token';
+
 import { OrderByPipe } from './orderby.pipe';
-import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd-item.component'
+import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd-item.component';
+import { DvdNewComponent } from './dvd/dvd-new/dvd-new.component'
+
+import { SigninComponent } from './auth/signin/signin.component'
+import { SettingsComponent } from './settings/settings.component'
+import { UserComponent } from './user/user.component'
+
+import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,9 +34,12 @@ import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd-item.component'
     AboutComponent,
     DvdComponent,
     DvdDetailComponent,
-    DvdAddComponent,
     OrderByPipe,
     DvdItemComponent,
+    DvdNewComponent,
+    SigninComponent,
+    SettingsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +49,7 @@ import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd-item.component'
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [DvdService],
+  providers: [DvdService, Angular2TokenService, AuthService, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

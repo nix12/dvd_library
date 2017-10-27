@@ -11,7 +11,8 @@
 			</thead>
 
 			<tbody>
-				<tr *ngFor="let movie of (movies | orderBy: 'title')">
+				<tr *ngFor="let movie of (movies | orderBy: 'title')"
+				>
 					<th scope="row">{{ movie.id }}</th>
 					<td>
 						<a 

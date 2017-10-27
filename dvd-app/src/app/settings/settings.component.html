@@ -1,0 +1,127 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<h1 class="center">Settings</h1>
+
+			<form [formGroup]="editForm" (ngSubmit)="update(editForm)">
+				<div class="form-group" 
+					[ngClass]="{
+						'has-danger': editForm.controls.email.invalid && 
+													editForm.controls.email.dirty,
+						'has-success': editForm.controls.email.valid && 
+													editForm.controls.email.dirty
+					}"
+				>
+					<label 
+						class="form-control-label" 
+						for="email"
+					>
+						E-mail
+					</label>
+					<input 
+						type="text" 
+						name="email"
+						class="form-control 
+									form-control-danger
+									form-control-success`"
+						formControlName="email" 
+					>
+					<div *ngIf="editForm.controls['email'].hasError('pattern') && 
+											editForm.controls['email'].hasError('email')"
+						class="form-control-feedback"
+					>
+						E-mail must have an @ and end in '.com'
+					</div>
+					<div *ngIf="editForm.controls['email'].hasError('required')" 
+						class="form-control-feedback"
+					>
+						E-mail cannot be blank
+					</div>
+					<small class="form-text text-muted">
+						E-mail is required
+					</small>
+				</div>
+
+				<div class="form-group" 
+					[ngClass]="{
+						'has-danger': editForm.controls.password.invalid && 
+													editForm.controls.password.dirty,
+						'has-success': editForm.controls.password.valid && 
+													editForm.controls.password.dirty								
+					}"
+				>
+					<label 
+						class="form-control-label" 
+						for="password"
+					>
+						Password
+					</label>
+					<input 
+						type="password" 
+						name="password"
+						class="form-control 
+									form-control-danger
+									form-control-success"
+						formControlName="password" 
+					>
+					<div *ngIf="editForm.controls['password'].hasError('minlength')"
+						class="form-control-feedback" 
+					>
+						Must be minimum of 8 characters
+					</div>
+					<div *ngIf="editForm.controls['password'].hasError('maxlength')"
+						class="form-control-feedback" 
+					>
+						Can only be a maximum of 30 characters
+					</div>
+				</div>
+
+				<div class="form-group" 
+					[ngClass]="{
+						'has-danger': editForm.invalid && 
+													editForm.dirty,
+						'has-success': editForm.valid && 
+													editForm.dirty 
+					}"
+				>
+					<label 
+						class="form-control-label" 
+						for="password_confirmation"
+					>
+						Password Confirmation
+					</label>
+					<input 
+						type="password" 
+						name="password_confirmation"
+						class="form-control 
+									form-control-danger
+									form-control-success"
+						formControlName="password_confirmation" 
+					>
+					<div *ngIf="editForm.controls['password_confirmation'].hasError('minlength')"
+						class="form-control-feedback" 
+					>
+						Must be minimum of 8 characters
+					</div>
+					<div *ngIf="editForm.controls['password_confirmation'].hasError('maxlength')"
+						class="form-control-feedback" 
+					>
+						Can only be a maximum of 30 characters
+					</div>
+					<div *ngIf="editForm.hasError('nomatch')"
+						class="form-control-feedback" 
+					>
+						Password confirmation must match password
+					</div>
+				</div>
+
+				<button
+					type="submit"
+					class="btn btn-primary btn-lg btn-block"
+				>
+					Update
+				</button>		
+			</form>
+		</div>
+	</div>
+</div>																											

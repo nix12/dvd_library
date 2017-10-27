@@ -4,26 +4,24 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Movies } from '../mock-dvd' 
 
 @Component({
-  selector: 'app-dvd-add',
-  templateUrl: './dvd-add.component.html',
-  styleUrls: ['./dvd-add.component.scss']
+  selector: 'app-dvd-new',
+  templateUrl: './dvd-new.component.html',
+  styleUrls: ['./dvd-new.component.scss']
 })
-export class DvdAddComponent implements OnInit {
-	addForm: FormGroup
+export class DvdNewComponent implements OnInit {
+	newForm: FormGroup
 
   constructor() { }
 
   ngOnInit() {
-  	this.addForm = new FormGroup({
+  	this.newForm = new FormGroup({
   		'id': new FormControl(null, Validators.required),
 	  	'title': new FormControl(null, Validators.required)
 	  })
   }
 
   onSubmit() {	
-  	Movies.push(this.addForm.value)
-  	console.log(this.addForm)
+  	Movies.push(this.newForm.value)
+  	console.log(this.newForm)
   }
-
-
 }

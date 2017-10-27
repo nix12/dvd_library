@@ -1,26 +1,36 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 	<div class="container">
 		<ul class="nav navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link">Logged in as NAME</a>
+			<li class="nav-item" *ngIf="(authService.userSignedIn$ | async)">
+				<a class="nav-link">Logged in as {{ authTokenService.currentUserData.name }}</a>
 			</li>
 
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="(authService.userSignedIn$ | async)">
 				<a class="nav-link" routerLink="/library">Library</a>
 			</li>
 
-			<li class="nav-item dropdown">
+			<li class="nav-item dropdown" *ngIf="(authService.userSignedIn$ | async)">
 				<div ngbDropdown class="d-inline-block dropdown-links">
 					<button class="btn btn-outline" ngbDropdownToggle>
 						<i class="fa fa-cog" aria-hidden="true"></i>
 					</button>
 
 					<div class="dropdown-menu" aria-labelledby="settingsDropdown">
-						<a class="dropdown-item">Settings</a>
+						<a class="dropdown-item" [routerLink]="['/users/settings/1']">Settings</a>
 						<a class="dropdown-item" routerLink="/about">About</a>
-						<a class="dropdown-item">Logout</a>
+						<a 
+							class="dropdown-item" 
+							(click)="signoutUser()"
+							style="cursor: pointer;" 
+						>
+							Logout
+						</a>
 					</div>
 				</div>
+			</li>
+
+			<li class="nav-item" *ngIf="!(authService.userSignedIn$ | async)">
+				<a class="nav-link" routerLink="/signin">Sign In</a>
 			</li>
 		</ul>
 	</div>

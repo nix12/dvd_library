@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6 mg">
+			<h1 class="center">Sign In</h1>
+			<form [formGroup]="signinForm" (ngSubmit)="onSignin(signinForm.value)">
+				<ngb-alert 
+					[dismissible]="false"
+					*ngIf="errorMessage"
+				>
+					{{ errorMessage }}
+				</ngb-alert>
+
+				<div class="form-group" 
+					[ngClass]="{
+						'has-success': signinForm.controls.email.valid &&
+													signinForm.controls.email.dirty,
+						'has-danger': signinForm.controls.email.invalid &&
+													signinForm.controls.email.dirty
+					}"
+				>
+					<label for="email">E-mail</label>
+					<input 
+						type="text" 
+						name="email"
+						class="form-control
+									form-control-success
+									form-control-danger"
+						formControlName="email" 
+					>
+					<div *ngIf="signinForm.controls['email'].hasError('required') && 
+											signinForm.controls['email'].touched"
+						class="form-control-feedback" 
+					>
+						E-mail is required
+					</div>
+					<div *ngIf="signinForm.controls['email'].hasError('pattern') && 
+											signinForm.controls['email'].hasError('email')"
+						class="form-control-feedback"
+					>
+						E-mail must have an @ and end in '.com'
+					</div>
+				</div>
+
+				<div class="form-group" 
+					[ngClass]="{
+						'has-success': signinForm.controls.password.valid &&
+													signinForm.controls.password.dirty,
+						'has-danger': signinForm.controls.password.invalid &&
+													signinForm.controls.password.dirty
+					}"
+				>
+					<label for="password">Password</label>
+					<input 
+						type="password" 
+						name="password"
+						class="form-control
+									form-control-success
+									form-control-danger"
+						formControlName="password" 
+					>
+					<div *ngIf="signinForm.controls['password'].hasError('required') && 
+											signinForm.controls['password'].touched"
+						class="form-control-feedback" 
+					>
+						Password is required
+					</div>
+				</div>			
+
+				<button 
+					type="submit" 
+					class="btn btn-primary btn-lg btn-block"
+				>
+					Sign in
+				</button>	
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,6 @@
 export interface Movie {
 	id?: number
-	title?: string
+	title: string
 	year?: number
 	plot?: string
 }
