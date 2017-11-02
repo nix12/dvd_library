@@ -12,8 +12,8 @@ import 'rxjs/add/operator/switchMap'
   styleUrls: ['./dvd-item.component.scss']
 })
 export class DvdItemComponent implements OnInit {
-  @Input() movie: Movie
-  @Input() id: number
+  movie: Movie
+  id: number
 
   constructor(private route: ActivatedRoute,
               private location: Location,

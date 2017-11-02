@@ -22,7 +22,7 @@ export class DvdDetailComponent implements OnInit {
 
   getMovies(): void {
     this.dvdService.getMovies()
-      .then(movies => this.movies = movies)
+      .subscribe(movies => this.movies = movies)
   }
 
   onSelect(movie: Movie) {
