@@ -26,6 +26,7 @@ import { SettingsComponent } from './settings/settings.component'
 import { UserComponent } from './user/user.component'
 
 import { AuthGuard } from './shared/auth.guard';
+import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthGuard } from './shared/auth.guard';
     DvdNewComponent,
     SigninComponent,
     SettingsComponent,
-    UserComponent
+    UserComponent,
+    UrlSanitizerPipe
   ],
   imports: [
     BrowserModule,

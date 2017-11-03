@@ -16,7 +16,10 @@ export class DvdService {
   }
 
   getMovie(id: number): Observable<Movie> {
-  	return this.http.get(this.moviesURL + '/' + id + '.mp4')
+  	let headers = new Headers({ 'Accept': 'video/mp4' })
+  	let options = new RequestOptions({ headers: headers })
+
+  	return this.http.get(this.moviesURL + '/' + id + '.mp4', options)
   		.map((res: Response) => res.json())
   }
 }

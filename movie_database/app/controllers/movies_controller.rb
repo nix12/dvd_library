@@ -27,14 +27,14 @@ class MoviesController < ApplicationController
 
 	def show
 		movie = Movie.find(params[:id])
-		path = open(movie.video.path.to_s)
+		movie[:video_url] = movie.video.url
 
-		send_data path, type: "video/mp4", disposition: "inline", stream: true, range: true
+		render json: movie, status: 200, content_type: "video/*"
 	end
 
 	private
 
 		def movie_params
-			params.require(:movie).permit(:title, :year, :plot, :video)
+			params.require(:movie).permit(:title, :year, :plot, :video, :video_url)
 		end
 end
