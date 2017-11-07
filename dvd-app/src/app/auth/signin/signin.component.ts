@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service'
 import { Router } from '@angular/router'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Angular2TokenService } from 'angular2-token'
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +14,8 @@ export class SigninComponent implements OnInit {
 	errorMessage: string 
 
   constructor(private authService: AuthService,
-  						private router: Router) {}
+  						private router: Router,
+              private authTokenService: Angular2TokenService) {}
 
   ngOnInit() {
   	this.signinForm = new FormGroup({
@@ -32,6 +34,9 @@ export class SigninComponent implements OnInit {
   			(res) => {
   				if (res.status == 200) {
   					this.router.navigate(['/library'])
+            console.log('access token ' + this.authTokenService.currentAuthData.accessToken)
+            console.log('token type ' + this.authTokenService.currentAuthData.tokenType)
+            console.log('client ' + this.authTokenService.currentAuthData.client)
   				} 
   			},
   			(errorData) => {

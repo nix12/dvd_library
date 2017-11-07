@@ -7,8 +7,9 @@ import { Response } from '@angular/http'
 @Injectable()
 export class AuthService {
 	userSignedIn$: Subject<boolean> = new Subject()
+  token: any
 
-  constructor(public authService: Angular2TokenService) {
+  constructor(public authService: Angular2TokenService,) {
   	this.authService.init(environment.token_auth_config)
   	this.authService.validateToken()
   		.subscribe(
@@ -19,8 +20,9 @@ export class AuthService {
   signinUser(signInData: { email: string, password: string }): Observable<Response> {
   	return this.authService.signIn(signInData)
   		.map(
-  			res => {
-  				this.userSignedIn$.next(true)
+  			(res: Response) => {
+          this.userSignedIn$.next(true)
+          console.log('access token2 ' + res.headers.get('access-token'))
   				return res
   			}
   		)

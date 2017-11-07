@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/build/intermediates/res/merged/F0/debug/drawable-xxxhdpi/background.png",
+        "source": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/res/drawable-xxxhdpi/background.png"
+    },
+    {
+        "merged": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/build/intermediates/res/merged/F0/debug/drawable-xxxhdpi/logo.png",
+        "source": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/res/drawable-xxxhdpi/logo.png"
+    },
+    {
+        "merged": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/build/intermediates/res/merged/F0/debug/drawable-xxxhdpi/icon.png",
+        "source": "/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/res/drawable-xxxhdpi/icon.png"
+    }
+]

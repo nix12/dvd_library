@@ -1,0 +1,10 @@
+<ActionBar title="Dvd Library" class="action-bar"></ActionBar>
+<GridLayout>
+	<ListView [item]="movies" class="list-group">
+		<ng-template let-movie="item">
+			<StackLayout class="list-group-item">
+				<Label text="{{ movie.title }}" class="h2"></Label>
+			</StackLayout>
+		</ng-template>
+	</ListView>
+</GridLayout>

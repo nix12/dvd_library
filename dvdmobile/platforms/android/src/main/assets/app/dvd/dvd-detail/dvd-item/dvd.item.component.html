@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col-3">
+			<div *ngIf="movie">
+				<h6>{{ movie.title }}</h6>
+				<h6>{{ movie.video_file_name }}</h6>
+
+				<video width="640" height="480" controls>
+					<source [src]="sanitizeUrl(movie.video_url)" type="video/mp4">
+				</video>
+			</div>
+		</div>
+	</div>	
+</div>

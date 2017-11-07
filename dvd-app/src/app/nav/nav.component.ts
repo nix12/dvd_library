@@ -10,8 +10,6 @@ import { User } from '../user/user'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-	user: User
-
   constructor(private authService: AuthService,
   						private router: Router,
   						private authTokenService: Angular2TokenService) { }
