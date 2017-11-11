@@ -7,7 +7,6 @@ import { Response } from '@angular/http'
 @Injectable()
 export class AuthService {
 	userSignedIn$: Subject<boolean> = new Subject()
-  token: any
 
   constructor(public authService: Angular2TokenService,) {
   	this.authService.init(environment.token_auth_config)

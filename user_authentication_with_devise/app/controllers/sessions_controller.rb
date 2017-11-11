@@ -10,8 +10,6 @@ class SessionsController < DeviseTokenAuth::SessionsController
   	client = request.headers["client"]
   	params = { "token": encrypted_token, "client": client }
 
-  	Net::HTTP.post_form(URI.parse("http://localhost:3001/api_keys"), params)
-  	puts params
-  	puts "AUTHORIZATION"
+  	Net::HTTP.post_form(URI.parse("https://Default-Environment.siewsjuk2c.us-west-2.elasticbeanstalk.com/api_keys"), params)
   end
 end

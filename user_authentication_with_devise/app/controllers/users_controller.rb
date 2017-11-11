@@ -1,11 +1,5 @@
 class UsersController < ApplicationControlle
-	# before_action :authenticate_user!
-
-	def show
-		user = User.find(params[:id])
-
-		render json: user, status: 200
-	end
+	before_action :authenticate_user!
 
 	def update
 		user = User.find(params[:id])

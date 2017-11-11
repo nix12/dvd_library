@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 	require "uri"
 	require "net/http"
 
-	before_action :authorized, only: [:show]
+	before_action :authorized
 
 	def index
 		@movies = Movie.all
@@ -33,13 +33,8 @@ class MoviesController < ApplicationController
 	def show
 		movie = Movie.find(params[:id])
 		movie[:video_url] = movie.video.url
-		access_token = request.headers["access_token"]
-		client = request.headers["client"]
 
-		p "access_token" + access_token
-		p "client" + client
-
-		render json: movie, status: 200, content_type: "video/*" #if authorized(access_token, client)
+		render json: movie, status: 200, content_type: "video/*" 
 	end
 
 	private
@@ -49,11 +44,11 @@ class MoviesController < ApplicationController
 		end
 
 		def authorized 
-			client = request.headers["client"]
-			access_token = request.headers["access_token"]
-			client = ApiKey.find(client)
+			client_id = request.headers["client"]
+			access_token = request.headers["access-token"]
+			encrypted_token = Digest::SHA256.hexdigest(access_token)
+			client = ApiKey.find(client_id)
 			
-			
-			redirect_to "http://localhost:4200" if Digest::SHA256.hexdigest(access_token) != client.token
+			redirect_to "http://localhost:4200" if encrypted_token != client.token
 		end
 end

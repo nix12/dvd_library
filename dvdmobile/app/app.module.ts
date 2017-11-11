@@ -7,6 +7,8 @@ import { ItemService } from "./item/item.service";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 
+import { Angular2TokenService } from 'angular2-token'
+
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
@@ -34,7 +36,8 @@ import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd.item.component'
         DvdItemComponent
     ],
     providers: [
-        ItemService
+        ItemService,
+        Angular2TokenService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

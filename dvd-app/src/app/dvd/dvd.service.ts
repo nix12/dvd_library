@@ -13,7 +13,12 @@ export class DvdService {
               private tokenService: Angular2TokenService) { }
 
   getMovies(): Observable<Movie[]> {
-  	return this.http.get(this.moviesURL)
+    let headers = new Headers()
+    headers.append('access-token', this.tokenService.currentAuthData.accessToken)
+    headers.append('client', this.tokenService.currentAuthData.client)
+    let options = new RequestOptions({ headers: headers })
+
+  	return this.http.get(this.moviesURL, options)
   		.map((res: Response) => res.json())
   }
 
