@@ -5,6 +5,7 @@
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-intl/index.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-intl/nativescript-intl.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-intl/nativescript-intl-common.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-toast/toast.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/common.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/element-registry.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/platform-static.js
@@ -231,6 +232,7 @@
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/item.service.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/item-detail.component.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/items.component.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/signin/signin.component.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd.service.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd-detail/dvd.detail.component.js

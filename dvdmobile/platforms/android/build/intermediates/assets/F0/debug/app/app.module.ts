@@ -8,13 +8,15 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 import { DvdDetailComponent } from './dvd/dvd-detail/dvd.detail.component'
 import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd.item.component'
+import { SigninComponent } from './signin/signin.component'
 
 
 @NgModule({
@@ -24,14 +26,17 @@ import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd.item.component'
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptHttpModule
+        NativeScriptHttpModule,
+        NativeScriptFormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
         DvdDetailComponent,
-        DvdItemComponent
+        DvdItemComponent,
+        SigninComponent
     ],
     providers: [
         ItemService

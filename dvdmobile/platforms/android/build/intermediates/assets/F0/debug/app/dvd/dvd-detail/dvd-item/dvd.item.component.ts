@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap'  
 
 @Component({
+  moduleId: module.id,
   selector: 'app-dvd-item',
   templateUrl: './dvd.item.component.html',
   styleUrls: ['./dvd.item.component.scss']

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DvdService {
-  moviesURL = 'http://localhost:3001/movies'
+  moviesURL = 'http://moviedatabase-env.us-west-2.elasticbeanstalk.com'
 
   constructor(private http: Http) { }
 
@@ -16,7 +16,8 @@ export class DvdService {
   }
 
   getMovie(id: number): Observable<Movie> {
-  	let headers = new Headers({ 'Accept': 'video/mp4' })
+  	let headers = new Headers()
+    headers.append('Accept', 'video/mp4')
   	let options = new RequestOptions({ headers: headers })
 
   	return this.http.get(this.moviesURL + '/' + id + '.mp4', options)

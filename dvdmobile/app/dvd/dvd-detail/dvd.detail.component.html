@@ -1,4 +1,7 @@
-<ActionBar title="Dvd Library" class="action-bar"></ActionBar>
+<ActionBar title="DVD Library" class="action-bar">
+	<ActionItem title="Sign Out" (tap)="signout()"></ActionItem>
+</ActionBar>
+
 <GridLayout>
 	<ListView [item]="movies" class="list-group">
 		<ng-template let-movie="item">

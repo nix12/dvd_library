@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap'
   moduleId: module.id,
   selector: 'app-dvd-item',
   templateUrl: './dvd.item.component.html',
-  styleUrls: ['./dvd.item.component.scss']
+  styleUrls: ['./dvd.item.component.css']
 })
 export class DvdItemComponent implements OnInit {
   movie: Movie

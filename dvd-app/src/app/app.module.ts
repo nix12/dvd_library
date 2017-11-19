@@ -51,7 +51,13 @@ import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [DvdService, Angular2TokenService, AuthService, AuthGuard, UserService],
+  providers: [
+    DvdService, 
+    Angular2TokenService, 
+    AuthService, 
+    AuthGuard, 
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

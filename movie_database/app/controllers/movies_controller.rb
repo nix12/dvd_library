@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 	require "uri"
 	require "net/http"
 
-	before_action :authorized
+	before_action :authorized, except: [:index]
 
 	def index
 		@movies = Movie.all

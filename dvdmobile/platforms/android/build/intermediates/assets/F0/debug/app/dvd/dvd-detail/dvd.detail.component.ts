@@ -5,6 +5,7 @@ import { Movie } from '../dvd'
 import { Router } from '@angular/router'
 
 @Component({
+  moduleId: module.id,
   selector: 'app-dvd-detail',
   templateUrl: './dvd.detail.component.html',
   styleUrls: ['./dvd.detail.component.scss']

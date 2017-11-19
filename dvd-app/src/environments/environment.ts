@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   token_auth_config: {
-  	apiBase: 'http://localhost:3000'
+  	apiBase: 'http://default-environment.siewsjuk2c.us-west-2.elasticbeanstalk.com'
   }
 };
