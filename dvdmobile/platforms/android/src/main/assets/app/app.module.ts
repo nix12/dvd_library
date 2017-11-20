@@ -13,8 +13,9 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { DvdDetailComponent } from './dvd/dvd-detail/dvd.detail.component'
 import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd.item.component'
 import { DvdService } from './dvd/dvd.service'
-import { SigninComponent } from './signin/signin.component'
+import { SigninComponent } from './auth/signin/signin.component'
 import { AuthService } from './auth/auth.service'
+import { AuthGuard } from './shared/auth.guard'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AuthService } from './auth/auth.service'
     ],
     providers: [
         DvdService,
-        AuthService
+        AuthService,
+        AuthGuard
     ],
     schemas: [
         NO_ERRORS_SCHEMA

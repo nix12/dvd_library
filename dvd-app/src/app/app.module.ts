@@ -29,35 +29,35 @@ import { AuthGuard } from './shared/auth.guard';
 import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    AboutComponent,
-    DvdComponent,
-    DvdDetailComponent,
-    OrderByPipe,
-    DvdItemComponent,
-    DvdNewComponent,
-    SigninComponent,
-    SettingsComponent,
-    UserComponent,
-    UrlSanitizerPipe
-  ],
-  imports: [
-    BrowserModule,
-    NgbModule.forRoot(),
-    AngularFontAwesomeModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpModule
-  ],
-  providers: [
-    DvdService, 
-    Angular2TokenService, 
-    AuthService, 
-    AuthGuard, 
-    UserService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NavComponent,
+		AboutComponent,
+		DvdComponent,
+		DvdDetailComponent,
+		OrderByPipe,
+		DvdItemComponent,
+		DvdNewComponent,
+		SigninComponent,
+		SettingsComponent,
+		UserComponent,
+		UrlSanitizerPipe
+	],
+	imports: [
+		BrowserModule,
+		NgbModule.forRoot(),
+		AngularFontAwesomeModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
+		HttpModule
+	],
+	providers: [
+		DvdService,
+		Angular2TokenService,
+		AuthService,
+		AuthGuard,
+		UserService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

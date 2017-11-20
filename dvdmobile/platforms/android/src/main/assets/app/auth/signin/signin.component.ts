@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx'
 import { Router, NavigationExtras } from '@angular/router'
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms'
 import { Http, Headers, RequestOptions, Response } from '@angular/http'
-import { AuthService } from '../auth/auth.service'
+import { AuthService } from '../auth.service'
 import * as Toast from "nativescript-toast";
 
 @Component({
