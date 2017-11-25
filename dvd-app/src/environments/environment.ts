@@ -4,8 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
-  token_auth_config: {
-  	apiBase: 'http://default-environment.siewsjuk2c.us-west-2.elasticbeanstalk.com'
-  }
+	production: false,
+	token_auth_config: {
+		apiBase: 'http://default-environment.siewsjuk2c.us-west-2.elasticbeanstalk.com'
+	}
 };

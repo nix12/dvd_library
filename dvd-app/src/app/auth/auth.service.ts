@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
 import { Angular2TokenService } from 'angular2-token'
 import { environment } from '../../environments/environment'
 import { Response, Http, Headers, RequestOptions, RequestMethod } from '@angular/http'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthService {

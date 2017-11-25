@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 		render json: @movies, status: 200
 	end
 
-	def create
+	def create		
 		movie = Movie.new(movie_params)
 
 		if movie.save
@@ -34,13 +34,13 @@ class MoviesController < ApplicationController
 		movie = Movie.find(params[:id])
 		movie[:video_url] = movie.video.url
 
-		render json: movie, status: 200, content_type: "video/*" 
+		render json: movie, status: 200, content_type: "video/mp4", 
 	end
 
 	private
 
 		def movie_params
-			params.require(:movie).permit(:title, :year, :plot, :video, :video_url)
+			params.permit(:title, :year, :plot, :video)
 		end
 
 		def authorized 

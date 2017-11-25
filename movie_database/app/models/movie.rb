@@ -12,4 +12,5 @@ class Movie < ApplicationRecord
 										uniqueness: { case_sensitive: false }
 	validates :year, presence: true, numericality: { only_integer: true }
 	validates :plot, presence: true
+	validates :video, presence: true
 end
