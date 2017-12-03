@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Movie } from './dvd/dvd'
+import { Movie } from './dvd/dvd';
 
 @Pipe({
 	name: 'orderBy'

@@ -11,14 +11,13 @@
 			</thead>
 
 			<tbody>
-				<tr *ngFor="let movie of (movies | orderBy: 'title')"
+				<tr 
+					*ngFor="let movie of (movies | orderBy: 'title')"
+					(click)="onSelect(movie)"
 				>
 					<th scope="row">{{ movie.id }}</th>
 					<td>
-						<a 
-							[routerLink]="['/library', { outlets: { dvd: ['movies', movie.id] } }]" 
-							(click)="onSelect(movie)"
-						>
+						<a>
 								{{ movie.title | uppercase }}
 						</a>
 					</td>

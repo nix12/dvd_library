@@ -3,9 +3,12 @@
 </ActionBar>
 
 <GridLayout>
-	<ListView [item]="movies" class="list-group">
+	<ListView [items]="movies" class="list-group">
 		<ng-template let-movie="item">
-			<StackLayout class="list-group-item">
+			<StackLayout 
+				class="list-group-item" 
+				(tap)="onSelect(movie)"
+			>
 				<Label text="{{ movie.title }}" class="h2"></Label>
 			</StackLayout>
 		</ng-template>

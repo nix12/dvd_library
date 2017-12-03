@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
 import { Response, Http, Headers, RequestOptions, } from '@angular/http'
 import * as Toast from 'nativescript-toast'
 import { Subject } from 'rxjs/Subject'
-// import 'rxjs/add/operator/map'
-// import 'rxjs/add/operator/catch'
-// import 'rxjs/add/Observable/throw'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthService {
@@ -28,9 +26,9 @@ export class AuthService {
         this.client = res.headers.get('client')
         this.token = res.headers.get('access-token')
         this.uid = res.headers.get('uid')
-        Toast.makeText('client ' + this.client).show()
-        Toast.makeText('token ' + this.token).show()
-        Toast.makeText('uid ' + this.uid).show()
+        // Toast.makeText('client ' + this.client).show()
+        // Toast.makeText('token ' + this.token).show()
+        // Toast.makeText('uid ' + this.uid).show()
 
         let body = res.json()
         // console.log("body: " + body)

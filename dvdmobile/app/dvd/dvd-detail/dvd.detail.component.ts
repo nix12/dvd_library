@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable'
 import { DvdService } from '../dvd.service'
 import { Movie } from '../dvd'
 import { Router } from '@angular/router'
 import { AuthService } from '../../auth/auth.service'
+import * as Toast from 'nativescript-toast'
 
 @Component({
 	moduleId: module.id,
@@ -12,7 +13,7 @@ import { AuthService } from '../../auth/auth.service'
 	styleUrls: ['./dvd.detail.component.css']
 })
 export class DvdDetailComponent implements OnInit {
-	movies: Movie[] = []
+	public movies: Movie[] = []
 	public selectedMovie: Movie
 
 	constructor(private dvdService: DvdService,
@@ -28,8 +29,9 @@ export class DvdDetailComponent implements OnInit {
 			.subscribe(movies => this.movies = movies)
 	}
 
-	onSelect(movie: Movie) {
-		this.selectedMovie = movie
+	onSelect(movie: any) {
+		this.router.navigate(['/movies', movie.id])
+		Toast.makeText('movie ' + movie.id).show()
 	}
 
 	onSignout() {

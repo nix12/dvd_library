@@ -76,6 +76,10 @@
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/animations/private-imports/render/transition_animation_engine.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/animations/private-imports/render/shared.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-angular/animations/private-imports/dsl/element_instruction_map.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-videoplayer/videoplayer-common.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-videoplayer/videoplayer.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-videoplayer/video-source/video-source-common.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/nativescript-videoplayer/video-source/video-source.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/bundle-entry-points.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/file-system/file-system.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/file-system/file-system-access.js
@@ -228,12 +232,10 @@
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/utils/debug.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/xml/xml.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/tns_modules/tns-core-modules/fetch/fetch.js
-/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/item.js
-/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/item.service.js
-/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/item-detail.component.js
-/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/item/items.component.js
-/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/signin/signin.component.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/shared/auth.guard.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd.service.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd-detail/dvd.detail.component.js
 /home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/dvd/dvd-detail/dvd-item/dvd.item.component.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/auth/auth.service.js
+/home/linuxbox/Projects/dvd_library/dvdmobile/platforms/android/src/main/assets/app/auth/signin/signin.component.js

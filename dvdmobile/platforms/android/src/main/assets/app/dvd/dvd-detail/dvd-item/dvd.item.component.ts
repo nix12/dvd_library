@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params, ParamMap } from '@angular/router'
-import { DvdService } from '../../dvd.service'
+import { Component, OnInit } from '@angular/core';
+import { PageRoute } from 'nativescript-angular/router'
 import { Movie } from '../../dvd'
 import { DomSanitizer } from '@angular/platform-browser';
-
-
+import { registerElement } from 'nativescript-angular/element-registry'
+registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
 import 'rxjs/add/operator/switchMap'  
 
 @Component({
@@ -17,19 +16,20 @@ export class DvdItemComponent implements OnInit {
   movie: Movie
   id: number
 
-  constructor(private route: ActivatedRoute,
-              private dvdService: DvdService,
+  constructor(private route: PageRoute,
               private sanitizer: DomSanitizer) { 
   }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.dvdService.getMovie(+params.get('id')))
-      .subscribe(movie => this.movie = movie);
+    this.route.activatedRoute
+      .switchMap(activatedRoute => activatedRoute.params)
+      .forEach((params) => {
+        this.id = +params['id'];
+      });
   }
 
   sanitizeUrl(url) {
-    let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl('http://localhost:3001' + url)
+    let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl('http://moviedatabase-env.us-west-2.elasticbeanstalk.com' + url)
 
     return sanitizedUrl
   }

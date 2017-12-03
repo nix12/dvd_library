@@ -16,7 +16,7 @@
 					</button>
 
 					<div class="dropdown-menu" aria-labelledby="settingsDropdown">
-						<a class="dropdown-item" [routerLink]="['/users/settings/1']">Settings</a>
+						<a class="dropdown-item" [routerLink]="['/users/settings', authTokenService.currentUserData.id]">Settings</a>
 						<a class="dropdown-item" routerLink="/about">About</a>
 						<a 
 							class="dropdown-item" 

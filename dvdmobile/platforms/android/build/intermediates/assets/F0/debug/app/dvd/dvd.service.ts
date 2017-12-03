@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DvdService {
-  moviesURL = 'http://moviedatabase-env.us-west-2.elasticbeanstalk.com'
+  moviesURL = 'http://moviedatabase-env.us-west-2.elasticbeanstalk.com/movies'
 
   constructor(private http: Http) { }
 

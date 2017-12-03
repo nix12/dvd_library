@@ -3,15 +3,15 @@ import { ActivatedRoute, Params, ParamMap } from '@angular/router'
 import { DvdService } from '../../dvd.service'
 import { Movie } from '../../dvd'
 import { DomSanitizer } from '@angular/platform-browser';
-
-
+import { registerElement } from 'nativescript-angular/element-registry'
+registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
 import 'rxjs/add/operator/switchMap'  
 
 @Component({
   moduleId: module.id,
   selector: 'app-dvd-item',
   templateUrl: './dvd.item.component.html',
-  styleUrls: ['./dvd.item.component.scss']
+  styleUrls: ['./dvd.item.component.css']
 })
 export class DvdItemComponent implements OnInit {
   movie: Movie
@@ -29,7 +29,7 @@ export class DvdItemComponent implements OnInit {
   }
 
   sanitizeUrl(url) {
-    let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl('http://localhost:3001' + url)
+    let sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl('http://moviedatabase-env.us-west-2.elasticbeanstalk.com' + url)
 
     return sanitizedUrl
   }

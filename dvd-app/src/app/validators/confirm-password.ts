@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms'
+import { AbstractControl } from '@angular/forms';
 
 export const confirmPassword = (control: AbstractControl): { [key: string]: boolean } => {
   const password = control.get('password');

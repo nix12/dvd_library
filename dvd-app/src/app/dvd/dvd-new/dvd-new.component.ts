@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { DvdDetailComponent } from '../dvd-detail/dvd-detail.component';
 import { DvdService } from '../dvd.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse,  HttpClient } from '@angular/common/http'
 
 @Component({
 	selector: 'app-dvd-new',
@@ -28,16 +27,10 @@ export class DvdNewComponent implements OnInit {
 	upload() {
 		const movieFile = this.fileInput.nativeElement.files[0];
 
-		this.dvdService.uploadMovie(movieFile, this.newForm.value)
+		this.dvdService.newMovie(movieFile, this.newForm.value)
 			.subscribe(
-				(data) => {
-					console.log('data ' + data)
-				},
-				(err: HttpErrorResponse) => {
-					console.log(err)
-				},
 				() => {
-					this.router.navigate(['/library'])
+					this.router.navigate(['/library']);
 				}
 			)
 	}

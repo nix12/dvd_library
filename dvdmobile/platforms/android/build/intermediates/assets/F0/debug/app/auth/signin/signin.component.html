@@ -1,0 +1,21 @@
+<ActionBar title="DVD Library"></ActionBar>
+
+<GridLayout>
+	<StackLayout verticalalignment="center">
+		<StackLayout [formGroup]="signinForm" class="form">
+			<StackLayout class="input-field">
+				<Label text="E-mail:" class="label"></Label>
+				<TextField formControlName="email" class="input input-border"></TextField>
+			</StackLayout>
+
+			<StackLayout class="input-field">
+				<Label text="Password:" class="label"></Label>
+				<TextField formControlName="password" class="input input-border" secure="true"></TextField>
+			</StackLayout>
+			
+			<StackLayout class="input-field">
+				<Button text="Sign In" class="btn btn-primary btn-active w-full" (tap)="onSignin(signinForm.value)"></Button>
+			</StackLayout>
+		</StackLayout>
+	</StackLayout>
+</GridLayout>
