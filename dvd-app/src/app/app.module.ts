@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
-import { AppRoutingModule } from './app-routing.module'
-import { ReactiveFormsModule } from '@angular/forms'
-import { HttpModule } from '@angular/http'
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
+import { NgProgressModule } from '@ngx-progressbar/core';
+// import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -16,6 +19,7 @@ import { DvdService } from './dvd/dvd.service';
 import { UserService } from './user/user.service'
 import { AuthService } from './auth/auth.service';
 import { Angular2TokenService } from 'angular2-token';
+import { OmdbService } from './dvd/omdb.service';
 
 import { OrderByPipe } from './orderby.pipe';
 import { DvdItemComponent } from './dvd/dvd-detail/dvd-item/dvd-item.component';
@@ -49,14 +53,18 @@ import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
 		AngularFontAwesomeModule,
 		AppRoutingModule,
 		ReactiveFormsModule,
-		HttpModule
+		HttpModule,
+		HttpClientModule,
+		NgProgressModule.forRoot(),
+		// NgProgressHttpModule
 	],
 	providers: [
 		DvdService,
 		Angular2TokenService,
 		AuthService,
 		AuthGuard,
-		UserService
+		UserService,
+		OmdbService,
 	],
 	bootstrap: [AppComponent]
 })

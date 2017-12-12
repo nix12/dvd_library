@@ -1,34 +1,38 @@
 <div class="container">
 	<h1>Movie Add Form</h1>
 	<form [formGroup]="newForm" (ngSubmit)="upload()">
-		<div class="form-group">
+		<div class="form-group" formGroupName="primary">
 			<label for="title">Title:</label>
-			<input 
-				type="text" 
-				name="title" 
-				class="form-control" 
+			<input
+				type="text"
+				name="title"
+				class="form-control"
 				formControlName="title"
 			>
 
 			<label for="year">Year:</label>
-			<input 
-				type="text" 
-				name="year" 
-				class="form-control" 
+			<input
+				type="text"
+				name="year"
+				class="form-control"
 				formControlName="year"
-			>
-
-			<label for="plot">Plot:</label>
-			<input 
-				type="text" 
-				name="plot" 
-				class="form-control" 
-				formControlName="plot"
 			>
 		</div>
 
 		<div class="form-group">
-			<input type="file" #fileInput placeholder="Upload file..." accept="video/mp4">
+			<label for="plot">Plot:</label>
+			<textarea
+				class="form-control"
+				formControlName="plot"
+				cols="30"
+				rows="10"
+				#plot
+			>
+			</textarea>
+		</div>
+
+		<div class="form-group">
+			<input type="file" #fileInput placeholder="Upload file...">
 		</div>
 
 		<div class="form-group">

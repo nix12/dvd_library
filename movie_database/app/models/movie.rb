@@ -4,9 +4,10 @@ class Movie < ApplicationRecord
 			geometry: "640x480", 
 			format: 'mp4' 
 		}
-	}, processors: [:transcoder]
+  }, processors: [:transcoder]
 	validates_attachment :video, presence: true
-	do_not_validate_attachment_file_type :video
+  do_not_validate_attachment_file_type :video
+  process_in_background :video
 
 	validates :title, presence: true, length: { minimum: 1, maximum: 30 },
 										uniqueness: { case_sensitive: false }

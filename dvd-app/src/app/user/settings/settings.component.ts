@@ -30,8 +30,8 @@ export class SettingsComponent implements OnInit {
 		this.editForm = this.fb.group({
 			'email': new FormControl(userData.email, [Validators.email, Validators.required,
 																								Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]),
-			'password': new FormControl('', [Validators.minLength(8), Validators.maxLength(30)]),
-			'password_confirmation': new FormControl('', [Validators.minLength(8), Validators.maxLength(30)])
+			'password': new FormControl(null, [Validators.minLength(8), Validators.maxLength(30)]),
+			'password_confirmation': new FormControl(null, [Validators.minLength(8), Validators.maxLength(30)])
 		}, { validator: confirmPassword })
 
 		this._success.subscribe((message) => this.successMessage = message);
