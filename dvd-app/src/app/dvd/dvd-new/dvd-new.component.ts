@@ -4,7 +4,6 @@ import { DvdDetailComponent } from '../dvd-detail/dvd-detail.component';
 import { DvdService } from '../dvd.service';
 import { Router } from '@angular/router';
 import { OmdbService } from '../omdb.service';
-import { NgProgress } from '@ngx-progressbar/core'
 
 @Component({
 	selector: 'app-dvd-new',
@@ -22,8 +21,7 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 		private dvdService: DvdService,
 		private router: Router,
 		private omdb: OmdbService,
-		private fb: FormBuilder,
-		private progress: NgProgress
+		private fb: FormBuilder
 	) { }
 
 	ngOnInit() {
@@ -55,8 +53,6 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 	upload() {
 		const movieFile = this.fileInput.nativeElement.files[0];
 
-		this.progress.start();
-
 		this.dvdService.newMovie(
 			movieFile,
 			this.newForm.get('primary.title').value,
@@ -65,8 +61,7 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 		)
 			.subscribe(
 				() => {
-					this.progress.done();
-					this.router.navigate(['/library']);
+					this.newForm.reset();
 				}
 			)
 	}

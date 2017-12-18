@@ -1,14 +1,25 @@
 <div class="container">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-8">
 			<div *ngIf="movie">
-				<h6>{{ movie.title }}</h6>
-				<h6>{{ movie.video_file_name }}</h6>
+        <div class="text-center">
+          <h2>{{ movie.title }} - {{ movie.year }}</h2>
+        </div>
 
 				<video width="640" height="480" controls>
 					<source [src]="sanitizeUrl(movie.video_url)" type="video/mp4">
 				</video>
 			</div>
-		</div>
-	</div>	
+    </div>
+  
+    <div class="col-3">
+      <div *ngIf="movie">
+        <p class="mt">{{ movie.plot }}</p>
+      </div>
+
+      <button (click)="edit()" class="btn btn-primary">
+        Edit Movie
+      </button>
+    </div>
+  </div>
 </div>

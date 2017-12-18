@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient, HttpHeaders, HttpRequest, HttpProgressEvent } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable';
 import { Movie } from './dvd';
 import { Angular2TokenService } from 'angular2-token';
 import 'rxjs/add/operator/map';
+import { FormGroup } from '@angular/forms/src/model';
 
 @Injectable()
 export class DvdService {
@@ -13,7 +13,6 @@ export class DvdService {
 
 	constructor(
 		private http: Http,
-		private httpClient: HttpClient,
 		private authTokenService: Angular2TokenService
 	) { }
 
@@ -33,7 +32,6 @@ export class DvdService {
 		headers.append('access-token', this.authTokenService.currentAuthData.accessToken);
 		headers.append('client', this.authTokenService.currentAuthData.client);
 		const options = new RequestOptions({ headers: headers });
-		const req = new XMLHttpRequest
 
 		return this.http.get(this.moviesURL + '/' + id + '.mp4', options)
 			.map(
@@ -42,7 +40,7 @@ export class DvdService {
 			)
 	}
 
-	newMovie(fileToUpload: File, title: string, year: string, plot: string) {
+	newMovie(fileToUpload: File, title: string, year: string, plot: string): Observable<Movie> {
 		const formData = new FormData();
 		formData.append('title', title);
 		formData.append('year', year);
@@ -54,13 +52,18 @@ export class DvdService {
 		headers.append('client', this.authTokenService.currentAuthData.client);
 		const options = new RequestOptions({ headers: headers });
 
-		// const req = new HttpRequest<Movie>('POST', this.moviesURL, formData, {
-		// 	headers: headers,
-		// 	reportProgress: true
-		// })
-		// return this.httpClient.request(req)
-
 		return this.http.post(this.moviesURL, formData, options)
 			.map((res) => res.json())
+	}
+
+	updateMovie(movie: FormGroup, id: number): Observable<Movie> {
+		const headers = new Headers();
+		headers.append('access-token', this.authTokenService.currentAuthData.accessToken);
+		headers.append('client', this.authTokenService.currentAuthData.client);
+		const options = new RequestOptions({ headers: headers });
+
+
+		return this.http.put(this.moviesURL + '/' + id, movie, options)
+			.map((res: Response) => res.json())
 	}
 }

@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
 
 	def create		
     movie = Movie.new(movie_params)
+    movie.reload
 
     if movie.save
 			render json: movie, status: 201
@@ -21,7 +22,7 @@ class MoviesController < ApplicationController
 	end
 
 	def update
-		movie = Movie.find(params[:id])
+    movie = Movie.find(params[:id])
 
 		if movie.update_attributes(movie_params)
 			render json: movie, status: 200
@@ -32,7 +33,7 @@ class MoviesController < ApplicationController
 
 	def show
 		movie = Movie.find(params[:id])
-		movie[:video_url] = movie.video.url(:medium)
+		movie[:video_url] = movie.video.path(:medium)
 
 		render json: movie, status: 200, content_type: "video/mp4"
 	end

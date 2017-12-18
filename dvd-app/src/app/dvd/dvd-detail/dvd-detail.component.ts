@@ -25,7 +25,7 @@ export class DvdDetailComponent implements OnInit {
 			.subscribe(movies => this.movies = movies)
 	}
 
-	onSelect(movie: any) {
+	onSelect(movie: any): void {
 		this.router.navigate(['/library', { outlets: { dvd: ['movies', movie.id] } }])
 	}
 }

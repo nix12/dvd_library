@@ -5,9 +5,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http'
 import { NgProgressModule } from '@ngx-progressbar/core';
-// import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -31,6 +30,8 @@ import { UserComponent } from './user/user.component'
 
 import { AuthGuard } from './shared/auth.guard';
 import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
+import { ShortenPipe } from './shorten.pipe';
+import { DvdEditComponent } from './dvd/dvd-edit/dvd-edit.component';
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,9 @@ import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
 		SigninComponent,
 		SettingsComponent,
 		UserComponent,
-		UrlSanitizerPipe
+		UrlSanitizerPipe,
+		ShortenPipe,
+		DvdEditComponent
 	],
 	imports: [
 		BrowserModule,
@@ -54,9 +57,8 @@ import { UrlSanitizerPipe } from './shared/url-sanitizer.pipe';
 		AppRoutingModule,
 		ReactiveFormsModule,
 		HttpModule,
-		HttpClientModule,
 		NgProgressModule.forRoot(),
-		// NgProgressHttpModule
+		NgProgressHttpModule
 	],
 	providers: [
 		DvdService,

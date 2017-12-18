@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   	encrypted_token = Digest::SHA256.hexdigest(token)
   	params = { "token": encrypted_token, "client": client_id }
 
+    # Net::HTTP.post_form(URI.parse("http://localhost:3001/api_keys"), params)
   	Net::HTTP.post_form(URI.parse("http://moviedatabase-env.us-west-2.elasticbeanstalk.com/api_keys"), params)
   end
 end
