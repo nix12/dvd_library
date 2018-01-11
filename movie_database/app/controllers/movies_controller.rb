@@ -12,9 +12,9 @@ class MoviesController < ApplicationController
 
 	def create		
     movie = Movie.new(movie_params)
-    movie.reload
 
-    if movie.save
+		if movie.save
+			Resque.enqueue(TranscodeVideo, movie.id)
 			render json: movie, status: 201
 		else
 			render json: { errors: movie.errors }, status: 422
@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
 		movie = Movie.find(params[:id])
 		movie[:video_url] = movie.video.path(:medium)
 
-		render json: movie, status: 200, content_type: "video/mp4"
+		render json: movie, status: 200, content_type: "video/mp4"	
 	end
 
 	private
@@ -50,6 +50,8 @@ class MoviesController < ApplicationController
 			encrypted_token = Digest::SHA256.hexdigest(access_token)
 			client = ApiKey.find(client_id)
 			
-			redirect_to "http://localhost:4200" if encrypted_token != client.token
+			render json: { errors: client.errors }, status: 401 if encrypted_token != client.token
+		rescue ActiveRecord::RecordNotFound => e
+			render json: { errors: e.to_s }, status: 401
 		end
 end

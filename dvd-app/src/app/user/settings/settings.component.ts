@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { confirmPassword } from '../../validators/confirm-password';
 import { debounceTime } from 'rxjs/operator/debounceTime';
 import { Subject } from 'rxjs/Subject'
+import { NgProgress } from '@ngx-progressbar/core'
 
 @Component({
 	selector: 'app-settings',
@@ -20,11 +21,16 @@ export class SettingsComponent implements OnInit {
 	private _success = new Subject<string>();
 	private _failure = new Subject<string>();
 
-	constructor(private authTokenService: Angular2TokenService,
-							private userService: UserService,
-							private fb: FormBuilder) {}
+	constructor(
+		private authTokenService: Angular2TokenService,
+		private userService: UserService,
+		private fb: FormBuilder,
+		private progress: NgProgress
+	) {}
 
 	ngOnInit() {
+		this.progress.start();
+
 		const userData = this.authTokenService.currentUserData;
 
 		this.editForm = this.fb.group({
@@ -39,18 +45,25 @@ export class SettingsComponent implements OnInit {
 
 		this._failure.subscribe((message) => this.errorMessage = message);
 		debounceTime.call(this._failure, 10000).subscribe(() => this.errorMessage = null)
+
+		this.progress.done();
 	}
 
 	update(form: FormGroup) {
+		this.progress.start();
+
 		this.userService.update(form.value)
 			.subscribe(
-				(res) => {
-					console.log(res.status)
+				() => {
+					this.progress.done();
+
 					if (this.userService.status === 200) {
 						this._success.next('Email/Password successfully updated');
 					}
 				},
 				(error) => {
+					this.progress.done();
+
 					if (error['status'] === 422) {
 						this._failure.next('Password and Password Confirmation do not match');
 					} else if (error['status'] === 401) {

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { FlashMessagesModule } from 'angular2-flash-messages'
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -58,7 +58,7 @@ import { DvdEditComponent } from './dvd/dvd-edit/dvd-edit.component';
 		ReactiveFormsModule,
 		HttpModule,
 		NgProgressModule.forRoot(),
-		NgProgressHttpModule
+		FlashMessagesModule.forRoot()
 	],
 	providers: [
 		DvdService,

@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms/src/model';
 export class DvdService {
 	// moviesURL = 'http://localhost:3001/movies';
 	moviesURL = 'http://moviedatabase-env.us-west-2.elasticbeanstalk.com/movies';
+	public status: number;
 
 	constructor(
 		private http: Http,
@@ -53,7 +54,10 @@ export class DvdService {
 		const options = new RequestOptions({ headers: headers });
 
 		return this.http.post(this.moviesURL, formData, options)
-			.map((res) => res.json())
+			.map((res: Response) => {
+				this.status = res.status;
+				return res.json();
+			})
 	}
 
 	updateMovie(movie: FormGroup, id: number): Observable<Movie> {

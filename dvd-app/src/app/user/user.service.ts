@@ -5,6 +5,7 @@ import { User } from './user'
 import { Angular2TokenService } from 'angular2-token'
 import { environment } from 'environments/environment'
 import 'rxjs/add/operator/map'
+import { Movie } from 'app/dvd/dvd';
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,7 @@ export class UserService {
 	constructor(private http: Http,
 							private authTokenService: Angular2TokenService) { }
 
-	update(user: User): Observable<Response> {
+	update(user: User): Observable<Movie> {
 		const headers = new Headers();
 		headers.append('content-type', 'application/json');
 		headers.append('access-token', this.authTokenService.currentAuthData.accessToken);

@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { DvdService } from '../dvd.service';
 import { ActivatedRoute, ParamMap } from '@angular/router'
 import { Movie } from 'app/dvd/dvd';
+import { NgProgress } from '@ngx-progressbar/core'
 
 @Component({
 	selector: 'app-dvd-edit',
@@ -19,10 +20,13 @@ export class DvdEditComponent implements OnInit, AfterViewInit {
 		private fb: FormBuilder,
 		private dvdService: DvdService,
 		private location: Location,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private progress: NgProgress
 	) { }
 
 	ngOnInit() {
+		this.progress.start();
+
 		this.editForm = this.fb.group({
 			'title': new FormControl(null, Validators.required),
 			'year': new FormControl(null, Validators.required),
@@ -44,10 +48,20 @@ export class DvdEditComponent implements OnInit, AfterViewInit {
 			this.editForm.controls['year'].setValue(this.movie.year);
 			this.editForm.controls['plot'].setValue(this.movie.plot);
 		})
+
+		this.progress.done();
 	}
 
 	editMovie(): void {
+		this.progress.start();
+
 		this.dvdService.updateMovie(this.editForm.value, this.id)
-			.subscribe(() => this.location.back());
+			.subscribe(
+				() => {
+					this.progress.done();
+					this.location.back();
+				},
+				(error) => this.progress.done()
+			)
 	}
 }

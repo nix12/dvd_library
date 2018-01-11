@@ -17,14 +17,14 @@ import { DvdEditComponent } from './dvd/dvd-edit/dvd-edit.component'
 const appRoutes: Routes = [
  { path: '', pathMatch: 'full', redirectTo: 'signin' },
  { path: 'signin', component: SigninComponent },
- { path: 'library', component: DvdComponent, canActivate: [AuthGuard], children: [
+ { path: 'library', component: DvdComponent, canActivateChild: [AuthGuard], children: [
  	{ path: '', component: DvdDetailComponent, outlet: 'dvd' },
  	{ path: 'movies', component: DvdDetailComponent, outlet: 'dvd' },
  	{ path: 'movies/:id', component: DvdItemComponent, outlet: 'dvd' },
 	{ path: 'new', component: DvdNewComponent, outlet: 'dvd' },
 	{ path: 'movies/:id/edit', component: DvdEditComponent, outlet: 'dvd' }
  ] },
- { path: 'users', component: UserComponent, canActivate: [AuthGuard], children: [
+ { path: 'users', component: UserComponent, canActivateChild: [AuthGuard], children: [
  		{ path: '', component: SettingsComponent },
  		{ path: 'settings/:id', component: SettingsComponent },
  ] },

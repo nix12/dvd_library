@@ -10,8 +10,10 @@ import 'rxjs/add/operator/map';
 export class AuthService {
 	userSignedIn$: Subject<boolean> = new Subject();
 
-	constructor(public authService: Angular2TokenService,
-							private http: Http) {
+	constructor(
+		public authService: Angular2TokenService,
+		private http: Http
+	) {
 		this.authService.init(environment.token_auth_config);
 		this.authService.validateToken()
 			.subscribe(

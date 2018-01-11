@@ -4,6 +4,7 @@ import { DvdDetailComponent } from '../dvd-detail/dvd-detail.component';
 import { DvdService } from '../dvd.service';
 import { Router } from '@angular/router';
 import { OmdbService } from '../omdb.service';
+import { FlashMessagesService } from 'angular2-flash-messages'
 
 @Component({
 	selector: 'app-dvd-new',
@@ -21,7 +22,8 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 		private dvdService: DvdService,
 		private router: Router,
 		private omdb: OmdbService,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private flashMessagesService: FlashMessagesService
 	) { }
 
 	ngOnInit() {
@@ -53,6 +55,8 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 	upload() {
 		const movieFile = this.fileInput.nativeElement.files[0];
 
+		this.flashMessagesService.show('Your video is being uploaded', { cssClass: 'alert-success', timeout: 5000 })
+
 		this.dvdService.newMovie(
 			movieFile,
 			this.newForm.get('primary.title').value,
@@ -61,8 +65,12 @@ export class DvdNewComponent implements OnInit, OnDestroy {
 		)
 			.subscribe(
 				() => {
-					this.newForm.reset();
-				}
+					if (this.dvdService.status === 200) {
+						this.flashMessagesService.show('Video upload successful', { cssClass: 'alert-success', timeout: 10000 })
+					}
+				},
+				(error) => this.flashMessagesService.show('Video upload failed', { cssClass: 'alert-danger', timeout: 10000 })
 			)
+		this.newForm.reset();
 	}
 }
