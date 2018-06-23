@@ -1,0 +1,14 @@
+{
+"folders": [
+	{
+		"path": "dvd-app"
+	},
+	{
+		"path": "movie_database"
+	},
+	{
+		"path": "user_authentication_with_devise"
+	}
+],
+  "settings": {}
+}

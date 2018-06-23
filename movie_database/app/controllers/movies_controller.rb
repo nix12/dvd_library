@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 	require "uri"
 	require "net/http"
 
-	before_action :authorized, except: [:index]
+	before_action :authorized
 
 	def index
 		@movies = Movie.all
@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
     movie = Movie.new(movie_params)
 
 		if movie.save
-			Resque.enqueue(TranscodeVideo, movie.id)
 			render json: movie, status: 201
 		else
 			render json: { errors: movie.errors }, status: 422
@@ -33,7 +32,7 @@ class MoviesController < ApplicationController
 
 	def show
 		movie = Movie.find(params[:id])
-		movie[:video_url] = movie.video.path(:medium)
+		movie[:video_file_url] = movie.video_url(:video)
 
 		render json: movie, status: 200, content_type: "video/mp4"	
 	end

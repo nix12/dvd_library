@@ -3,21 +3,24 @@ require 'rack/test'
 
 RSpec.describe "Movies Controller", :type => :request do
 	let(:json) { JSON.parse(response.body) }
-	let(:movie_json) do
+	let(:movie_json) do 
 		{
 			id: movie.id,
 			title: movie.title,
 			year: movie.year,
 			plot: movie.plot,
-			video_file_name: movie.video_file_name,
-			video_content_type: movie.video_content_type,
-			video_file_size: movie.video_file_size
+			video: movie.video
 		}
 	end
 
 	describe "GET #index" do
+		let(:api_key) { FactoryBot.create(:api_key) }
+		let(:unencrypted_token) { "xxxxxxxxxx" }
+
 		before(:each) do
-			get "/movies"
+			headers = { "client": api_key.client, "access-token": unencrypted_token }
+			
+			get "/movies", headers: headers
 		end
 
 		it "should return status 200" do
@@ -28,9 +31,14 @@ RSpec.describe "Movies Controller", :type => :request do
 			let!(:movie) { FactoryBot.create(:movie) }
 			
 			it "will retrieve records in valid JSON-API format" do
-				get "/movies"
-				
-				expect(json).to include_json([movie_json])
+				headers = { "client": api_key.client, "access-token": unencrypted_token }
+
+				get "/movies", headers: headers
+			
+				expect(json[0]["title"]).to eq([movie_json[:title]][0])
+				expect(json[0]["year"]).to eq([movie_json[:year]][0])
+				expect(json[0]["plot"]).to eq([movie_json[:plot]][0])
+				expect(json[0]["video_data"]).to eq([movie_json[:video].to_json][0])
 			end
 		end
 		
@@ -38,7 +46,9 @@ RSpec.describe "Movies Controller", :type => :request do
 			let!(:movie) { FactoryBot.create_list(:movie, 10) }
 			
 			it "will return 10 records" do 
-				get "/movies"
+				headers = { "client": api_key.client, "access-token": unencrypted_token }
+
+				get "/movies", headers: headers
 				
 				expect(json.size).to eq(10)
 			end
@@ -62,7 +72,10 @@ RSpec.describe "Movies Controller", :type => :request do
 			end
 
 			it "should return a JSON object" do
-				expect(json).to include_json(movie_json)
+				expect(json["title"]).to eq(movie_json[:title])
+				expect(json["year"]).to eq(movie_json[:year])
+				expect(json["plot"]).to eq(movie_json[:plot])
+				expect(json["video_data"]).to eq(movie_json[:video].to_json)
 			end
 		end
 
@@ -99,8 +112,27 @@ RSpec.describe "Movies Controller", :type => :request do
 					title: "Test Movie",
 					year: 2018,
 					plot: "Lorem ipsum dolor sit amet",
-					video: Rack::Test::UploadedFile.new('spec/SampleVideo.mp4')
-				} 
+					video: {
+						id: "#{ Rails.root }/spec/files/SampleVideo.mp4",
+						storage: "cache",
+						metadata: {
+							filename: "video20180601-test.mp4",
+							size: 1057149,
+							mime_type: "video/mp4",
+							title: "Test Movie",
+							year: 2018,
+							plot: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere mattis dolor,
+							eget porta urna porta in. Sed laoreet nunc luctus sapien aliquam, tincidunt porttitor
+							ante molestie. Sed consectetur lobortis feugiat. Nam ultricies ante lectus, non maximus
+							lacus facilisis quis. Quisque congue lobortis gravida. Aliquam erat volutpat. Nulla sit
+							amet justo sed est hendrerit dictum eu at metus. In vitae purus dictum risus dapibus
+							cursus sit amet et ligula. Praesent imperdiet neque ac magna bibendum malesuada. Sed in
+							massa non mauris accumsan consequat. Pellentesque sodales luctus arcu ac faucibus.
+							Quisque pellentesque augue in placerat facilisis. Proin ornare massa et urna placerat
+							aliquet eget in elit. Nunc a diam dolor."
+						}
+					}.to_json
+				}
 				headers = { 
 					"client": api_key.client, 
 					"access-token": unencrypted_token 

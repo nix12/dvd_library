@@ -6,11 +6,13 @@ import { Angular2TokenService } from 'angular2-token'
 import { environment } from 'environments/environment'
 import 'rxjs/add/operator/map'
 import { Movie } from 'app/dvd/dvd';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserService {
 	private usersURL = environment.token_auth_config.apiBase;
 	public status: number;
+	public header: BehaviorSubject<number> = new BehaviorSubject(200);
 
 	constructor(private http: Http,
 							private authTokenService: Angular2TokenService) { }
@@ -27,7 +29,12 @@ export class UserService {
 		return this.http.put(this.usersURL + '/users/' + id, user, options)
 			.map((res: Response) => {
 				this.status = res.status;
+				this.header.next(res.status);
 				return res.json();
-			});
+			})
+			.catch((error: any) => {
+				this.header.next(error.status)
+				return Observable.throw(new Error(error.status));
+			})
 	}
 }

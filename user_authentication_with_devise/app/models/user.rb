@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   	params = { "token": encrypted_token, "client": client_id }
 
     # Net::HTTP.post_form(URI.parse("http://localhost:3001/api_keys"), params)
-  	Net::HTTP.post_form(URI.parse("http://moviedatabase-env.us-west-2.elasticbeanstalk.com/api_keys"), params)
+    Net::HTTP.post_form(URI.parse("http://moviedatabase-env.us-west-2.elasticbeanstalk.com/api_keys"), params)
+    # Net::HTTP.post_form(URI.parse("https://ancient-brushlands-58872.herokuapp.com/api_keys"), params)
   end
 end

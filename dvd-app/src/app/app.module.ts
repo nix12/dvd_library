@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { FlashMessagesModule } from 'angular2-flash-messages'
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';

@@ -7,6 +7,7 @@ import { UrlSanitizerPipe } from '../../../shared/url-sanitizer.pipe';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgProgress } from '@ngx-progressbar/core'
 import 'rxjs/add/operator/switchMap';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
 	selector: 'app-dvd-item',
@@ -14,7 +15,7 @@ import 'rxjs/add/operator/switchMap';
 	styleUrls: ['./dvd-item.component.scss']
 })
 export class DvdItemComponent implements OnInit {
-	moviesURL = 'http://s3.us-east-2.amazonaws.com/dvd-library'
+	// moviesURL = 'http://s3.us-east-2.amazonaws.com/dvd-library'
 	movie: Movie;
 	id: number;
 
@@ -23,7 +24,8 @@ export class DvdItemComponent implements OnInit {
 		private dvdService: DvdService,
 		private sanitizer: DomSanitizer,
 		private router: Router,
-		private progress: NgProgress
+		private progress: NgProgress,
+		private authService: AuthService
 	) {}
 
 	ngOnInit(): void {
@@ -33,14 +35,23 @@ export class DvdItemComponent implements OnInit {
 			.subscribe(
 				(movie) => {
 					this.movie = movie;
-					this.progress.done();
 				},
-				(error) => this.progress.done()
+				(error) => {
+					let header: number;
+					this.dvdService.header.subscribe((value) => header = value);
+
+					if (header === 401) {
+						this.router.navigate(['/signin']);
+						this.dvdService.header.next(200);
+						this.authService.userSignedIn$.next(false);
+					}
+				}
 			)
+			this.progress.done();
 	}
 
 	sanitizeUrl(url): any {
-		const sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(this.moviesURL + url);
+		const sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(url);
 
 		return sanitizedUrl;
 	}

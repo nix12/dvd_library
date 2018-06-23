@@ -6,6 +6,9 @@ import { confirmPassword } from '../../validators/confirm-password';
 import { debounceTime } from 'rxjs/operator/debounceTime';
 import { Subject } from 'rxjs/Subject'
 import { NgProgress } from '@ngx-progressbar/core'
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { DvdService } from '../../dvd/dvd.service';
 
 @Component({
 	selector: 'app-settings',
@@ -25,7 +28,9 @@ export class SettingsComponent implements OnInit {
 		private authTokenService: Angular2TokenService,
 		private userService: UserService,
 		private fb: FormBuilder,
-		private progress: NgProgress
+		private progress: NgProgress,
+		private router: Router,
+		private authService: AuthService
 	) {}
 
 	ngOnInit() {
@@ -55,24 +60,27 @@ export class SettingsComponent implements OnInit {
 		this.userService.update(form.value)
 			.subscribe(
 				() => {
-					this.progress.done();
-
 					if (this.userService.status === 200) {
 						this._success.next('Email/Password successfully updated');
 					}
 				},
 				(error) => {
-					this.progress.done();
+					let header: number;
+					this.userService.header.subscribe((value) => header = value)
 
 					if (error['status'] === 422) {
 						this._failure.next('Password and Password Confirmation do not match');
-					} else if (error['status'] === 401) {
+					} else if (error['status'] === 401 || header === 401) {
 						this._failure.next('UNAUTHORIZED');
+						this.router.navigate(['/signin']);
+						this.userService.header.next(200);
+						this.authService.userSignedIn$.next(false);
 					} else {
 						this._failure.next('Server Error');
 					}
 				}
-			 )
+			)
+		this.progress.done();
 		this.editForm.controls['password'].reset();
 		this.editForm.controls['password_confirmation'].reset();
 	}

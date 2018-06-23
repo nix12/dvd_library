@@ -17,16 +17,16 @@ import { DvdEditComponent } from './dvd/dvd-edit/dvd-edit.component'
 const appRoutes: Routes = [
  { path: '', pathMatch: 'full', redirectTo: 'signin' },
  { path: 'signin', component: SigninComponent },
- { path: 'library', component: DvdComponent, canActivateChild: [AuthGuard], children: [
- 	{ path: '', component: DvdDetailComponent, outlet: 'dvd' },
- 	{ path: 'movies', component: DvdDetailComponent, outlet: 'dvd' },
- 	{ path: 'movies/:id', component: DvdItemComponent, outlet: 'dvd' },
-	{ path: 'new', component: DvdNewComponent, outlet: 'dvd' },
-	{ path: 'movies/:id/edit', component: DvdEditComponent, outlet: 'dvd' }
+ { path: 'library', component: DvdComponent, canActivate: [AuthGuard], children: [
+ 	{ path: '', component: DvdDetailComponent, canActivate: [AuthGuard], outlet: 'dvd' },
+ 	{ path: 'movies', component: DvdDetailComponent, canActivate: [AuthGuard], outlet: 'dvd' },
+ 	{ path: 'movies/:id', component: DvdItemComponent, canActivate: [AuthGuard], outlet: 'dvd' },
+	{ path: 'new', component: DvdNewComponent, canActivate: [AuthGuard], outlet: 'dvd' },
+	{ path: 'movies/:id/edit', component: DvdEditComponent, canActivate: [AuthGuard], outlet: 'dvd' }
  ] },
- { path: 'users', component: UserComponent, canActivateChild: [AuthGuard], children: [
- 		{ path: '', component: SettingsComponent },
- 		{ path: 'settings/:id', component: SettingsComponent },
+ { path: 'users', component: UserComponent, canActivate: [AuthGuard], children: [
+ 		{ path: '', component: SettingsComponent, canActivate: [AuthGuard] },
+ 		{ path: 'settings/:id', component: SettingsComponent, canActivate: [AuthGuard]},
  ] },
  { path: 'about', component: AboutComponent }
 ]

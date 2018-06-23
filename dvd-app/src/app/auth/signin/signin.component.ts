@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Angular2TokenService } from 'angular2-token';
 import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
@@ -11,13 +10,12 @@ import { NgProgress } from '@ngx-progressbar/core';
 	styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-	signinForm: FormGroup
-	errorMessage: string
+	signinForm: FormGroup;
+	errorMessage: string;
 
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private authTokenService: Angular2TokenService,
 		private progress: NgProgress
 	) {}
 
@@ -38,15 +36,12 @@ export class SigninComponent implements OnInit {
 		this.authService.signinUser({ email, password })
 			.subscribe(
 				(res) => {
-					this.progress.done();
 					if (res.status === 200) {
 						this.router.navigate(['/library']);
 					}
 				},
 				(errorData) => {
 					const error = errorData.json();
-
-					this.progress.done();
 
 					if (error['error']) {
 						this.errorMessage = error['error'];
@@ -55,5 +50,6 @@ export class SigninComponent implements OnInit {
 					}
 				}
 			)
+		this.progress.done();
 	}
 }

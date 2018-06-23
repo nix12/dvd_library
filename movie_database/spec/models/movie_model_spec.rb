@@ -25,11 +25,19 @@ RSpec.describe Movie, type: :model do
 		it "should have a valid plot" do
 			expect(movie.plot).to be_present
 			expect(movie.plot.length).to be > 1
-			expect(movie.plot.length).to be < 1000
+			expect(movie.plot.length).to be < 5000
 		end
 
-		it "should have a valid video" do
-			expect(movie.video).to be_present
+		context "video processing" do
+			it "should have a valid video" do
+				expect(movie.video).to be_present
+			end
+
+			it "should process video" do
+				uploader = VideoUploader.new(:store)
+				processed = uploader.process(movie.video, action: :store)
+				expect(processed[:video]).to be_present
+			end
 		end
 	end
 
@@ -65,7 +73,7 @@ RSpec.describe Movie, type: :model do
 		end
 
 		it "should be invalid when plot is too long" do
-			movie.plot = "a" * 1001
+			movie.plot = "a" * 5001
 
 			expect(movie).to be_invalid
 		end

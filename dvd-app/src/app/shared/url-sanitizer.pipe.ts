@@ -11,5 +11,6 @@ export class UrlSanitizerPipe implements PipeTransform {
 	transform(url: string): any {
 		// return this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:3001/' + url);
 		return this.sanitizer.bypassSecurityTrustResourceUrl('http://moviedatabase-env.us-west-2.elasticbeanstalk.com/' + url);
+		// return this.sanitizer.bypassSecurityTrustResourceUrl('https://ancient-brushlands-58872.herokuapp.com/' + url);
 	}
 }

@@ -1,6 +1,4 @@
 Rails.application.configure do
-  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/SampleVideo.mp4"
-  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

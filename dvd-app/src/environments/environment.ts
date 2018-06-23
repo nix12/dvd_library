@@ -8,5 +8,6 @@ export const environment = {
 	token_auth_config: {
 		// apiBase: 'http://localhost:3000'
 		apiBase: 'http://default-environment.siewsjuk2c.us-west-2.elasticbeanstalk.com'
+		// apiBase: 'https://boiling-retreat-40992.herokuapp.com'
 	}
 };

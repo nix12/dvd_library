@@ -22,9 +22,10 @@ export class AuthService {
 	}
 
 	signinUser(signInData: { email: string, password: string }): Observable<Response> {
-		const headers = new Headers;
-		headers.append('Access-Control-Allow-Origin', environment.token_auth_config.apiBase);
-		const options = new RequestOptions({ headers: headers });
+		// const headers = new Headers;
+		// headers.append('Access-Control-Allow-Origin', environment.token_auth_config.apiBase);
+		// headers.append('Content-Type', 'application/json');
+		// const options = new RequestOptions({ headers: headers });
 
 		return this.authService.signIn(signInData)
 			.map(

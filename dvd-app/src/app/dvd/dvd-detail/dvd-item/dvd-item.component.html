@@ -16,7 +16,7 @@
 
         <ng-template #processed>
           <video width="640" height="480" controls>
-            <source [src]="sanitizeUrl(movie.video_url)" type="video/mp4">
+            <source [src]="sanitizeUrl(movie.video_file_url)" type="video/mp4">
             Your browser does not support this video
           </video>
         </ng-template>
