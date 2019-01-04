@@ -1,0 +1,1 @@
+export const authUrl = 'https://boiling-retreat-40992.herokuapp.com/auth';
